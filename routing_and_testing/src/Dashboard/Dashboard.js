@@ -29,7 +29,7 @@ export default class Dashboard extends React.Component {
   removeNote = id => {
     this.setState(previousState => {
       return {
-        notes: previousState.notes.filter(note => note.id !==id)
+        notes: previousState.notes.filter(note => note.id !==id) //xochil - stackOverflow
 }
 });
 }
