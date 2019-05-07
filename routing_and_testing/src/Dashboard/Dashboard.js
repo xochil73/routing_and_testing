@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import uuid from 'uuid';
+import uuid from 'uuid/v1';
 
 import NoteCreateForm from '../NoteCreateForm/NoteCreateForm';
 import NoteList from '../NoteList/NoteList';
@@ -16,11 +16,10 @@ export default class Dashboard extends React.Component {
   }
 
   addNote = note => {
-    note.id = uuid();
 
     this.setState((previousState) =>{
       return {
-        notes: [ ...previousState.notes, note],
+        notes: [ ...previousState.notes, {...note, id : uuid()}],
       }
     })
 
