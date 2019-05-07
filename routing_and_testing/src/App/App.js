@@ -13,7 +13,7 @@ export default class App extends React.Component {
           <nav>
             <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/dashboard">Dashboard</Link></li>
+            <li><Link to="/dashboard">Create Task</Link></li>
             </ul>
           </nav>
         <Route exact path="/dashboard" component={Dashboard}/>
