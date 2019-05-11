@@ -6,3 +6,10 @@ body {
   background-color: $background-color;
   color: cornflowerblue;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: 100px auto 100px;
+  grid-template-rows: repeat(3, 100px);
+  grid-gap: 1em;
+}

@@ -7,7 +7,7 @@ import NoteCreateForm from '../NoteCreateForm/NoteCreateForm';
 import NoteList from '../NoteList/NoteList';
 
 export default class Dashboard extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {};
@@ -16,10 +16,9 @@ export default class Dashboard extends React.Component {
   }
 
   addNote = note => {
-
-    this.setState((previousState) =>{
+    this.setState((previousState) => {
       return {
-        notes: [ ...previousState.notes, {...note, id : uuid()}],
+        notes: [...previousState.notes, {...note, id: uuid()}],
       }
     })
 
@@ -28,17 +27,39 @@ export default class Dashboard extends React.Component {
   removeNote = id => {
     this.setState(previousState => {
       return {
-        notes: previousState.notes.filter(note => note.id !==id) //xochil - stackOverflow
-}
-});
-}
+        notes: previousState.notes.filter(note => note.id !== id) //xochil - stackOverflow
+      }
+    });
+  };
 
+  handleUpdateNote = (notes) => {
+    this.setState((previousState) => {
+      const updateNote = previousState.notes.map(currentNote =>
+        notes.id === currentNote.id ? notes : currentNote);
+      return {notes: updateNote};
+    })
+  };
+
+  renderNotes = () => {
+    return (
+      <ul>
+        {
+          this.state.notes.map(currentNote => {
+            return <NoteList notes={currentNote}
+                             removeNote={this.removeNote}
+                             handleUpdateNote={this.handleUpdateNote}
+            />
+          })
+        }
+      </ul>
+    );
+  };
 
   render() {
     return (<div>
-      <h2>Note Dashboard</h2>
+      <h2>Task Dashboard</h2>
       <NoteCreateForm addNote={this.addNote}/>
-      <NoteList notes={this.state.notes} removeNote={this.removeNote.bind(this)}/>
+      {this.renderNotes()}
     </div>);
   }
 }

@@ -10,8 +10,10 @@ export default class App extends React.Component {
   render(){
     return(
       <main className="app">
+        <div>
+          <header className="header">TASK APP</header>
         <BrowserRouter>
-          <nav>
+          <nav className="list">
             <ul>
             <li className="link"><Link to="/">Home</Link></li>
             <li className="link"><Link to="/dashboard">Create Task</Link></li>
@@ -20,6 +22,7 @@ export default class App extends React.Component {
         <Route exact path="/dashboard" component={Dashboard}/>
         <Route exact path="/" component={Landing}/>
         </BrowserRouter>
+        </div>
       </main>);
   }
 }
